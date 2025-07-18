@@ -11,7 +11,6 @@
 #include <chrono>
 
 
-#include "Game.hpp"
 #include "TileMap.hpp"
 #include "MapGenerator.hpp"
 #include "Collision.hpp"

@@ -8,7 +8,6 @@
 class Character {
 public:
 	Character(std::string name, int health, int mana, int attackPower, int resist);
-	virtual void takeTurn(Character &enemy) = 0;
 	bool isAlive() const;
 	void attack(Character &target);
 	virtual ~Character();

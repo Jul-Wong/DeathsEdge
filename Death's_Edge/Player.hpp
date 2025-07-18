@@ -21,10 +21,7 @@ public:
 	void levelUp();
 	void addItem(Item *item);
 	void useItem(int index);
-	void useSkill(int skillIndex);
 	bool run();
-	void takeTurn(Character& enemy);
-	bool checkSelection(int choice, int minChoice, int maxChoice);
 
 protected:
 	int level, experience, experienceToNextLevel;

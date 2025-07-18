@@ -1,9 +1,13 @@
 #include "CombatManager.hpp"
+#include "Skill.hpp"
 #include <iostream>
 
 std::string fontPath = "Fonts/trebuc.ttf";
 std::string playerStatPath = "Sprites/Player_Stats.png";
 int profileHeight = 330;
+Skill fireball("Fireball", 10, 10, TargetType::Enemy);
+Skill heal("Heal", 10, 10, TargetType::Self);
+Skill lightning("Lightning", 10, 15, TargetType::Enemy);
 
 
 CombatManager::CombatManager(Player* player, Enemy* enemy) : player(player), enemy(enemy), currentPhase(TurnPhase::PlayerTurn),
@@ -39,7 +43,7 @@ button1(font, "ATTACK", 30), button2(font, "ITEMS", 30), button3(font, "SKILL", 
 	button4.setHoverColour(sf::Color(150, 250, 150, 255));
 	button4.setTextColour(sf::Color(50, 25, 0), sf::Color(255, 170, 0), 1.0f);
 	
-
+	
 }
 
 CombatOutcome CombatManager::combatStatus(sf::RenderWindow& window) {
@@ -84,7 +88,6 @@ void CombatManager::handleInput(sf::RenderWindow& window) {
 	button4.hoverFeedback(window);
 
 	if (!enemy->isAlive()) {
-		std::cout << "Enemy defeated! Awarding XP: " << enemy->getExperience() << std::endl;
 		player->addExperience(enemy->getExperience());
 		outcome = CombatOutcome::PlayerVictory;
 		return;
@@ -95,20 +98,42 @@ void CombatManager::handleInput(sf::RenderWindow& window) {
 
 	if (currentPhase == TurnPhase::PlayerTurn && !mouseHandled && sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
 		if (itemPage) {
-			if (button1.isClicked(window)) player->useItem(0);
-			else if (button2.isClicked(window)) player->useItem(1);
-			else if (button3.isClicked(window)) player->useItem(2);
+			if (button1.isClicked(window)) {
+				player->useItem(0);
+				currentPhase = TurnPhase::EnemyWaiting;
+				turnClock.restart();
+			}
+			else if (button2.isClicked(window)) {
+				player->useItem(1);
+				currentPhase = TurnPhase::EnemyWaiting;
+				turnClock.restart();
+			}
+			else if (button3.isClicked(window)) {
+				player->useItem(2);
+				currentPhase = TurnPhase::EnemyWaiting;
+				turnClock.restart();
+			}
 			else if (button4.isClicked(window)) itemPage = false;
-			currentPhase = TurnPhase::EnemyWaiting;
-			turnClock.restart();
+
 		}
 		else if (skillPage) {
-			if (button1.isClicked(window)) player->useSkill(1);
-			else if (button2.isClicked(window)) player->useSkill(2);
-			else if (button3.isClicked(window)) player->useSkill(3);
+			if (button1.isClicked(window)) {
+				fireball.apply(*player, *enemy);
+				currentPhase = TurnPhase::EnemyWaiting;
+				turnClock.restart();
+			}
+			else if (button2.isClicked(window)) {
+				heal.apply(*player, *player);
+				currentPhase = TurnPhase::EnemyWaiting;
+				turnClock.restart();
+			}
+			else if (button3.isClicked(window)) {
+				lightning.apply(*player, *enemy);
+				currentPhase = TurnPhase::EnemyWaiting;
+				turnClock.restart();
+			}
 			else if (button4.isClicked(window)) skillPage = false;
-			currentPhase = TurnPhase::EnemyWaiting;
-			turnClock.restart();
+			
 		}
 		else {
 			if (button1.isClicked(window)) {

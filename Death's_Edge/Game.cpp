@@ -10,14 +10,6 @@ Game::Game(std::string playerName) {
 
     void Game::start() {
         isRunning = true;
-        std::cout << "In the dungeon, you encounter " << enemy->getName() << std::endl;
-        while (isRunning) {
-            player->takeTurn(*enemy);
-            if (!player->isAlive() || !enemy->isAlive()) {
-                isRunning = false;
-            }
-            enemy->takeTurn(*player);
-        }
     }
 
     Enemy* Game::generateEnemy() {
