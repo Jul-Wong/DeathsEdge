@@ -18,7 +18,7 @@
 #include "CombatManager.hpp"
 #include "EnemyFactory.hpp"
 
-std::string playerSpritePath = "Sprites/Entities/Rogue_Test.png";
+std::string playerSpritePath = "Sprites/Entities/Rogue.png";
 std::string enemySpritePath = "Sprites/Entities/Pink_Slime.png";
 std::string skeletonSpritePath = "Sprites/Entities/Skeleton_Mob.png";
 
