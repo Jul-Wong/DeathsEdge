@@ -1,0 +1,16 @@
+/.vs
+*.js
+*.html
+*.pdb
+*.css
+*.svg
+External/doc/html/classsf_1_1AudioResource.png
+External/doc/html/classsf_1_1CircleShape.png
+External/doc/html/classsf_1_1Context.png
+External/doc/html/classsf_1_1ConvexShape.png
+External/doc/html/classsf_1_1Drawable.png
+External/doc/html/classsf_1_1Exception.png
+External/doc/html/classsf_1_1FileInputStream.png
+/External/doc/html
+External/doc/SFML.tag
+/Death's_Edge/x64
