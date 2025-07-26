@@ -16,24 +16,24 @@
     <Filter Include="Header Files\Skills">
       <UniqueIdentifier>{43a19d04-012b-44eb-9f76-3f1a5e9e8b47}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Skill">
+      <UniqueIdentifier>{c5fc315b-0403-4971-8470-ae07f3cef6ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entity">
+      <UniqueIdentifier>{12cd7206-9faf-44a5-ba19-b2dd8bec3e64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entity">
+      <UniqueIdentifier>{fc4c848a-e242-4eee-ae65-566e6b4aa0db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HealthPotion.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
@@ -58,23 +58,23 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Skill.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Skill</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Character.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Item.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HealthPotion.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.hpp">
@@ -99,7 +99,16 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Skill.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Skills</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.hpp">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.hpp">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.hpp">
+      <Filter>Header Files\Entity</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

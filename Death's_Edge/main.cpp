@@ -32,7 +32,8 @@ void LoadFont(sf::Font& font, std::string str) {
 enum directions {up, down, left, right};
 enum class GameState {
     Exploration,
-    Combat
+    Combat,
+    Inventory
 };
 
 void PollEvents(sf::RenderWindow& window) {
