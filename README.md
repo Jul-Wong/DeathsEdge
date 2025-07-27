@@ -31,7 +31,7 @@ Before building and running Death's Edge, ensure you have the following installe
 
 ### 1. Clone the Repository
 ```bash
-git clone <repository-url>
+git clone https://github.com/username/Deaths_Edge.git
 cd Deaths_Edge
 ```
 
