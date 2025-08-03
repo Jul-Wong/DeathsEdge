@@ -31,8 +31,8 @@ Before building and running Death's Edge, ensure you have the following installe
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/username/Deaths_Edge.git
-cd Deaths_Edge
+git clone https://github.com/username/DeathsEdge.git
+cd DeathsEdge
 ```
 
 ### 2. SFML Dependencies
@@ -86,7 +86,7 @@ cd "x64/Debug"
 
 ## 🎯 Game Controls
 
-- **Movement**: Arrow keys or WASD
+- **Movement**: WASD
 - **Combat**: Follow on-screen prompts for turn-based combat
 - **Inventory**: Access through the game interface
 - **Exit**: Press `Escape` key or close the window
