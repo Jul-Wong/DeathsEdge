@@ -156,16 +156,6 @@ If you encounter issues, run in Debug mode for detailed error information:
 2. Press `F5` to start debugging
 3. Check the Output window for error messages
 
-## 🤝 Contributing
-
-If you'd like to contribute to Death's Edge:
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
 ## 📄 License
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
