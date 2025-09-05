@@ -120,3 +120,45 @@ bool Player::run() {
         return false;
     }
 }
+
+/**
+* @brief Adds a skill to the player's inventory.
+* @param skill Pointer to the Skill object to be added.
+*/
+void Player::addSkill(Skill* skill) {
+    inventorySkills.push_back(skill);
+}
+
+/**
+*
+*/
+void Player::equipItem(Item* item, int slot) {
+    if (slot >= 0 && slot < 3) {
+        equippedItems[slot] = item;
+    }
+}
+
+/**
+*
+*/
+void Player::equipSkill(Skill* skill, int slot) {
+    if (slot >= 0 && slot < 3) {
+        equippedSkills[slot] = skill;
+    }
+}
+
+/**
+* 
+*/
+std::vector<Item*> Player::getEquippedItems() const {
+    return std::vector<Item*>(equippedItems, equippedItems + 3);
+}
+
+/**
+* 
+*/
+std::vector<Skill*> Player::getEquippedSkills() const {
+    return std::vector<Skill*>(equippedSkills, equippedSkills + 3);
+}
+
+

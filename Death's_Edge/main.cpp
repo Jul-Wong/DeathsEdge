@@ -15,6 +15,7 @@
 #include "MapGenerator.hpp"
 #include "Collision.hpp"
 #include "CombatManager.hpp"
+#include "InventoryManager.hpp"
 #include "EnemyFactory.hpp"
 
 std::string playerSpritePath = "Sprites/Entities/Rogue.png";
@@ -56,7 +57,8 @@ int main() {
 	unsigned int height = 360;
     srand(time(NULL));
 
-    sf::RenderWindow *window = new sf::RenderWindow(desktop, "Death's Edge", sf::Style::Resize);
+    sf::RenderWindow *window = new sf::RenderWindow(desktop, "Death's Edge", sf::Style::Close);
+	window->setTitle("Death's Edge");
     window->setFramerateLimit(60);
     window->setVerticalSyncEnabled(true);
 
@@ -153,6 +155,7 @@ int main() {
     GameState currentState = GameState::Exploration;
 
     CombatManager* combat = nullptr;
+    InventoryManager* inventory = nullptr;
     Player* combatPlayer =new Player("Rogue", 100, 100, 10, 3);
     combatPlayer->setSpritePath(playerSpritePath);
     combatPlayer->addItem(new HealthPotion("Small Health Potion", 20));
@@ -169,11 +172,16 @@ int main() {
 
         // Render
         window->clear();
-
+        // Exploration State
         if (currentState == GameState::Exploration) {
             int direction = -1;
             bool isMoving = false;
             sf::Vector2f movement(0.f, 0.f);
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::E)) {
+                inventory = new InventoryManager(combatPlayer);
+                currentState = GameState::Inventory;
+                continue;
+            }
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::W)) {
                 movement.y -= speed * dt;
 				direction = up;
@@ -243,7 +251,9 @@ int main() {
             window->draw(enemySprite);
             window->draw(skeletonSprite);
 
-        } else if (currentState == GameState::Combat) {
+        } 
+        // Combat State
+        else if (currentState == GameState::Combat) {
             uiView = window->getDefaultView();
             window->setView(uiView);
             CombatOutcome result = combat->combatStatus(*window);
@@ -268,6 +278,15 @@ int main() {
 
                 window->setView(gameView);
             }  
+        }
+        else if (currentState == GameState::Inventory) {
+            uiView = window->getDefaultView();
+            window->setView(uiView);
+			bool inventoryClosed = inventory->inventoryStatus(*window);
+            if (inventoryClosed) {
+                currentState = GameState::Exploration;
+				delete inventory;
+            }
         }
 
 		window->display();

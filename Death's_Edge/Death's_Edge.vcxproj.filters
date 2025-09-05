@@ -22,6 +22,18 @@
     <Filter Include="Header Files\Entity">
       <UniqueIdentifier>{12cd7206-9faf-44a5-ba19-b2dd8bec3e64}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GameState">
+      <UniqueIdentifier>{5da55fdf-cd33-4386-86fa-8a1812f31f3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameState">
+      <UniqueIdentifier>{cc1ec6c2-f959-454f-a13a-18fd99a29538}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameState\Inventory">
+      <UniqueIdentifier>{b856df9b-6115-4ea3-ab80-e397f3e68d04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameState\Inventory">
+      <UniqueIdentifier>{3389b68f-a64b-4a90-92bb-f675b01b9ca1}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\Entity">
       <UniqueIdentifier>{fc4c848a-e242-4eee-ae65-566e6b4aa0db}</UniqueIdentifier>
     </Filter>
@@ -48,9 +60,6 @@
     <ClCompile Include="Collision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CombatManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CombatButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -68,6 +77,12 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="CombatManager.cpp">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryManager.cpp">
+      <Filter>Source Files\GameState\Inventory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,9 +104,6 @@
     <ClInclude Include="Collision.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CombatManager.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CombatButton.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -109,6 +121,15 @@
     </ClInclude>
     <ClInclude Include="Player.hpp">
       <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="CombatManager.hpp">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryManager.hpp">
+      <Filter>Header Files\GameState\Inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="InventorySlot.hpp">
+      <Filter>Header Files\GameState\Inventory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

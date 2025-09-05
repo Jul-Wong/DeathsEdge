@@ -11,7 +11,7 @@ Skill lightning("Lightning", 10, 15, TargetType::Enemy);
 
 
 CombatManager::CombatManager(Player* player, Enemy* enemy) : player(player), enemy(enemy), currentPhase(TurnPhase::PlayerTurn),
-isCombatOver(false), combatText(font, "Combat Starts!", 24),
+ combatText(font, "Combat Starts!", 24),
 button1(font, "ATTACK", 30), button2(font, "ITEMS", 30), button3(font, "SKILL", 30), button4(font, "RUN", 30), itemPage(false), skillPage(false)  {
 	if (!font.openFromFile(fontPath)) {
 		std::cerr << "Failed to load " << fontPath << std::endl;
@@ -47,14 +47,17 @@ button1(font, "ATTACK", 30), button2(font, "ITEMS", 30), button3(font, "SKILL", 
 }
 
 CombatOutcome CombatManager::combatStatus(sf::RenderWindow& window) {
-	handleInput(window);
-	render(window);
+	handleCombatInput(window);
+	renderCombat(window);
 	return outcome;
 }
 
-void CombatManager::handleInput(sf::RenderWindow& window) {
+void CombatManager::handleCombatInput(sf::RenderWindow& window) {
 	static bool mouseHandled = false;
 	sf::Vector2f worldPos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
+
+	// Move Buttons relative to the window size
+	// TODO:
 
 	// Item and Skill Page
 	if (itemPage || skillPage) {
@@ -181,7 +184,7 @@ void CombatManager::handleInput(sf::RenderWindow& window) {
 	}
 }
 
-void CombatManager::render(sf::RenderWindow& window) {
+void CombatManager::renderCombat(sf::RenderWindow& window) {
 	std::string status =
 		player->getName() + " HP: " + std::to_string(player->getHealth()) + "\n" +
 		enemy->getName() + " HP: " + std::to_string(enemy->getHealth()) + "\n\n";
@@ -189,10 +192,17 @@ void CombatManager::render(sf::RenderWindow& window) {
 	combatText.setString(status);
 
 
+	// Move Buttons relative to the window size
+	button1.setPosition(sf::Vector2f(window.getSize().x - 0.3 * window.getSize().x, window.getSize().y - 0.25 * window.getSize().y));
+	button2.setPosition(sf::Vector2f(window.getSize().x - 0.15 * window.getSize().x, window.getSize().y - 0.25 * window.getSize().y));
+	button3.setPosition(sf::Vector2f(window.getSize().x - 0.3 * window.getSize().x, window.getSize().y - 0.15 * window.getSize().y));
+	button4.setPosition(sf::Vector2f(window.getSize().x - 0.15 * window.getSize().x, window.getSize().y - 0.15 * window.getSize().y));
+
 
 	// Player Stat Bar
 	sf::Texture playerStat;
 	
+
 	if (!playerStat.loadFromFile(playerStatPath)) {
 		std::cerr << "ERROR: CANNOT LOAD FILE::" << playerStatPath << std::endl;
 		return;
@@ -200,7 +210,7 @@ void CombatManager::render(sf::RenderWindow& window) {
 
 	sf::Sprite playerStatBar(playerStat);
 
-	playerStatBar.setPosition(sf::Vector2f(0, 800));
+	playerStatBar.setPosition(sf::Vector2f(0, 0.8 * window.getSize().y));
 	playerStatBar.setScale(sf::Vector2f(0.25, 0.25));
 
 
@@ -208,19 +218,19 @@ void CombatManager::render(sf::RenderWindow& window) {
 	float hpPercent = static_cast<float>(player->getHealth()) / player->getMaxHealth();
 	sf::RectangleShape hpFront(sf::Vector2f(167 * hpPercent, 13));
 	hpFront.setFillColor(sf::Color::Red);
-	hpFront.setPosition(sf::Vector2f(145, 850));
+	hpFront.setPosition(sf::Vector2f(145, 0.8 * window.getSize().y + 50));
 
 	// Mana Bar
 	float manaPercent = static_cast<float>(player->getMana()) / player->getMaxMana();
 	sf::RectangleShape manaFront(sf::Vector2f(167 * manaPercent, 13));
 	manaFront.setFillColor(sf::Color::Blue);
-	manaFront.setPosition(sf::Vector2f(145, 885));
+	manaFront.setPosition(sf::Vector2f(145, 0.8 * window.getSize().y + 85));
 
 	// Experience Bar
 	float xpPercent = static_cast<float>(player->getExperience()) / player->getExperienceToNextLevel();
 	sf::RectangleShape xpFront(sf::Vector2f(167 * xpPercent, 13));
 	xpFront.setFillColor(sf::Color::Green);
-	xpFront.setPosition(sf::Vector2f(145, 920));
+	xpFront.setPosition(sf::Vector2f(145, 0.8 * window.getSize().y + 120));
 
 	sf::RectangleShape rectangle(sf::Vector2f(window.getSize().x, profileHeight));
 	rectangle.setFillColor(sf::Color(20, 20, 20));
